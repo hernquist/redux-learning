@@ -11,8 +11,8 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
 const rootReducer = combineReducers({
-    control: counterReducer,
-    result: resultReducer
+    ctr: counterReducer,
+    res: resultReducer
 });
 
 const store = createStore(rootReducer);

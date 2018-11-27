@@ -1,34 +1,33 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 
-import CounterControl from '../../components/CounterControl/CounterControl';
-import CounterOutput from '../../components/CounterOutput/CounterOutput';
+import CounterControl from '../CounterControl/CounterControl';
+import CounterOutput from '../CounterOutput/CounterOutput';
+import './Counter.css';
 
 class Counter extends Component {
+  render () {
+    const { counter, storeResults } = this.props;
 
+    return (
+        <Fragment>
+            <CounterOutput value={counter} />
+            <CounterControl label="Increment" />
+            <CounterControl label="Add 8" />
+            <CounterControl label="Decrement" />
+            <CounterControl label="Subtract -12" />
+            <CounterControl label="Reset" />
+            <CounterControl label="Random" />
+            
+            <hr />
+            <div className="ResultsButton">Store Result</div>
 
-    render () {
-        const { counter, storeResults } = this.props;
-        return (
-            <div>
-                <CounterOutput value={this.props.ctr} />
-                <CounterControl label="Increment" />
-                <CounterControl label="Add 8" />
-                <CounterControl label="Decrement" />
-                <CounterControl label="Subtract -12" />
-                <CounterControl label="Reset" />
-                <CounterControl label="Random" />
-                
-                <hr />
-                <button>Store Result</button>
-                <ul>
-                    {storedResults.map(result => (
-                        <li key={result.id} >{result.value}</li>
-                    ))}
-                </ul>
-            </div>
-        );
-    }
+            {storeResults.map(result => (
+                <div key={result.id} >{result.value}</div>
+            ))}
+        </Fragment>
+    );
+  }
 }
 
 const mapStateToProps = state => {
@@ -38,4 +37,4 @@ const mapStateToProps = state => {
     }
 };
 
-export default connect(mapStateToProps, snull)(Counter);
+export default connect(mapStateToProps, null)(Counter);

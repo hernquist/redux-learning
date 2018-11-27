@@ -1,5 +1,6 @@
 .CounterControl {
     width: 150px;
+    background-color: lime;
     padding: 20px;
     box-sizing: border-box;
     margin: 16px;
