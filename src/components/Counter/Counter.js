@@ -12,7 +12,7 @@ class Counter extends Component {
     return (
         <Fragment>
             <CounterOutput value={counter} />
-            <CounterControl label="Increment" />
+            <CounterControl label="Increment" clicked={() => console.log('clicked')} />
             <CounterControl label="Add 8" />
             <CounterControl label="Decrement" />
             <CounterControl label="Subtract -12" />
