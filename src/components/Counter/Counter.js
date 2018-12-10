@@ -4,18 +4,19 @@ import { connect } from 'react-redux';
 import CounterControl from '../CounterControl/CounterControl';
 import CounterOutput from '../CounterOutput/CounterOutput';
 import './Counter.css';
+import { incrementCounter, add, decrementCounter } from '../../store/actions';
 
 class Counter extends Component {
   render () {
-    const { counter, storeResults } = this.props;
+    const { counter, storeResults, add, incrementCounter, decrementCounter } = this.props;
 
     return (
         <Fragment>
             <CounterOutput value={counter} />
-            <CounterControl label="Increment" clicked={() => console.log('clicked')} />
-            <CounterControl label="Add 8" />
-            <CounterControl label="Decrement" />
-            <CounterControl label="Subtract -12" />
+            <CounterControl label="Increment" clicked={() => incrementCounter()} />
+            <CounterControl label="Add 8" clicked={() => add(8)} />
+            <CounterControl label="Decrement" clicked={() => decrementCounter()} />
+            <CounterControl label="Subtract -12"  />
             <CounterControl label="Reset" />
             <CounterControl label="Random" />
             
@@ -37,4 +38,12 @@ const mapStateToProps = state => {
     }
 };
 
-export default connect(mapStateToProps, null)(Counter);
+const mapDispatchToProps = dispatch => {
+    return {
+        incrementCounter: () => dispatch(incrementCounter()),
+        decrementCounter: () => dispatch(decrementCounter()),
+        add: value => dispatch(add(value))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Counter);
